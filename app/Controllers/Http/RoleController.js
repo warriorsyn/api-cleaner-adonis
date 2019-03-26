@@ -1,9 +1,9 @@
 'use strict'
 
 const Role = use('Adonis/Acl/Role')
-class RoleController {
+class RoleController { //Responsible for return all roles
   async index () {
-    const roles = await Role.all()
+    const roles = await Role.all() //Search for all roles
 
     return roles
   }

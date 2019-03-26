@@ -16,6 +16,10 @@ class Schedule extends Model {
   checklist () {
     return this.hasMany('App/Models/Checklist')
   }
+
+  // order () {
+  //   return this.belongsTo('App/Models/Order')
+  // }
 }
 
 module.exports = Schedule

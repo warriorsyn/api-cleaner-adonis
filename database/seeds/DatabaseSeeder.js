@@ -2,6 +2,7 @@
 
 const User = use('App/Models/User')
 const Role = use('Adonis/Acl/Role')
+const Product = use('App/Models/Product')
 
 class DatabaseSeeder {
   async run () {
@@ -54,6 +55,12 @@ class DatabaseSeeder {
       status: true,
       client_id: cliente.id,
       worker_id: colaborador.id
+    })
+
+    await Product.create({
+      name: 'Poison',
+      code: '010928838829374',
+      quantity: 2
     })
   }
 }

@@ -5,10 +5,11 @@ const Mail = use('Mail')
 const ScheduleEmailHook = (exports = module.exports = {})
 
 ScheduleEmailHook.sendScheduleEmail = async schedule => {
-  const workerId = schedule.worker_id
-  const clientId = schedule.client_id
+  // Method Hook
+  const workerId = schedule.worker_id // Get the worker id will receive the email
+  const clientId = schedule.client_id // Get the client id
 
-  const user = await User.findBy('id', workerId)
+  const user = await User.findBy('id', workerId) // Search for worker
   const client = await User.findBy('id', clientId)
   await Mail.send(
     ['emails.schedule'],
