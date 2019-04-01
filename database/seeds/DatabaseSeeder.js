@@ -3,6 +3,7 @@
 const User = use('App/Models/User')
 const Role = use('Adonis/Acl/Role')
 const Product = use('App/Models/Product')
+const TimeWorked = use('App/Models/TimeWorked')
 
 class DatabaseSeeder {
   async run () {
@@ -52,7 +53,7 @@ class DatabaseSeeder {
     await cliente.roles().attach([client.id])
     await user.roles().attach([admin.id])
 
-    await user.schedule().create({
+    const schedule = await user.schedule().create({
       work: 'Clean the house',
       date_time: new Date(),
       status: true,
@@ -64,6 +65,12 @@ class DatabaseSeeder {
       name: 'Poison',
       code: '010928838829374',
       quantity: 2
+    })
+
+    await TimeWorked.create({
+      schedule_id: schedule.id,
+      user_id: colaborador.id,
+      time_worked: "4:00"
     })
   }
 }
