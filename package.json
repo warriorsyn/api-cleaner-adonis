@@ -27,7 +27,8 @@
     "@adonisjs/mail": "^3.0.9",
     "@adonisjs/validator": "^5.0.6",
     "adonis-acl": "^1.1.1",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "pg": "^7.9.0"
   },
   "devDependencies": {
     "eslint": "^5.15.0",
