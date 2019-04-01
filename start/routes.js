@@ -7,6 +7,10 @@ Route.get('/', () => {
   return "true"
 })
 
+Route.get('/teste', () => {
+  return "function"
+})
+
 Route.group(() => {
   Route.get('/clients', 'UserController.getClient').middleware(['is:administrator'])
   Route.get('/workers', 'UserController.getWorkers').middleware(['is:administrator'])
