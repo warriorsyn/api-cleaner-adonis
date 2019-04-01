@@ -11,7 +11,8 @@ class DatabaseSeeder {
       email: 'joaovictorandrade32@hotmail.com',
       password: '123456',
       telephone: '(79) 99154-1139',
-      address: 'Rua 5, Costa nova IV, 500'
+      address: 'Rua 5, Costa nova IV, 500',
+      role: 'administrator'
     })
 
     const cliente = await User.create({
@@ -19,7 +20,8 @@ class DatabaseSeeder {
       email: 'cleverson@hotmail.com',
       password: '123456',
       telephone: '(79) 99154-1139',
-      address: 'Rua 5, Costa nova IV, 520'
+      address: 'Rua 5, Costa nova IV, 520',
+      role: 'client'
     })
 
     const colaborador = await User.create({
@@ -27,7 +29,8 @@ class DatabaseSeeder {
       email: 'mariana@hotmail.com',
       password: '123456',
       telephone: '(79) 99154-1139',
-      address: 'Rua 5, Costa nova V, 520'
+      address: 'Rua 5, Costa nova V, 520',
+      role: 'worker'
     })
 
     const admin = await Role.create({

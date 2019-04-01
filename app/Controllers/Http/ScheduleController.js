@@ -71,6 +71,12 @@ class ScheduleController {
 
     await schedule.delete() // Delete the schedule
   }
+
+  async getByAuth({ auth }) {
+    const schedule = await Schedule.query().where('worker_id', auth.user.id).orderBy('created_at', 'desc').fetch()
+
+    return schedule
+  }
 }
 
 module.exports = ScheduleController

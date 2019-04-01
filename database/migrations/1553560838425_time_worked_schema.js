@@ -23,7 +23,7 @@ class TimeWorkedSchema extends Schema {
       .inTable('users')
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
-      table.date('time_worked')
+      table.time('time_worked')
       table.timestamps()
     })
   }

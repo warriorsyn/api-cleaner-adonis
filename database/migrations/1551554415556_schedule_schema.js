@@ -14,6 +14,7 @@ class ScheduleSchema extends Schema {
         .boolean('status')
         .notNullable()
         .defaultTo(false)
+      table.string('address')
       table
         .integer('user_id')
         .notNullable()

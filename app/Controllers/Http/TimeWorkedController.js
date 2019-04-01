@@ -1,8 +1,12 @@
 'use strict'
 const TimeWorked = use('App/Models/TimeWorked')
+const User = use('App/Models/User')
 class TimeWorkedController {
 
-  async index ({ request, response, view }) {
+  async index () {
+    const time = await User.query().with('time').fetch();
+    
+    return time
   }
 
   async store ({ request, auth, params }) {
@@ -17,8 +21,12 @@ class TimeWorkedController {
     return timeSchedule
   }
 
-  async show ({ params, request, response, view }) {
-  }
+  async show ({ params }) {
+
+    const time = await User.query().with('time').where('id', params.id).fetch()
+
+    return time
+  } 
  
   async update ({ params, request, response }) {
   }

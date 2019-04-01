@@ -4,6 +4,15 @@
 const Model = use('Model')
 
 class TimeWorked extends Model {
+
+    schedule() {
+        return this.belongsTo('App/Models/Schedule')
+    }
+
+    user() {
+        return this.belongsTo('App/Models/User')
+    }
+
 }
 
 module.exports = TimeWorked

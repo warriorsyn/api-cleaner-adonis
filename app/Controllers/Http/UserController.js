@@ -28,12 +28,28 @@ class UserController {
         .send([{ message: 'Please choose a valid role', field: 'role' }])
     }
 
-    const user = await User.create(data) // Create an user
+    const user = await User.create({
+      ...data,
+      role: request.input('role')
+    }) // Create an user
 
     await user.roles().attach([role.id]) // Attach a role to the user created
 
     return user // return the user data
   }
+
+  async getClient() {
+    const user = await User.query().where('role', 'client').fetch()
+ 
+    return user    
+  }
+
+  async getWorkers() {
+    const user = await User.query().where('role', 'worker').fetch()
+ 
+    return user 
+  }
+
 }
 
 module.exports = UserController

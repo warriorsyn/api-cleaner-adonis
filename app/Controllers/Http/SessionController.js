@@ -14,8 +14,8 @@ class SessionController {
     const token = await auth.attempt(email, password) // Create the JSW
 
     const user = await User.findBy('email', email) // Search an user by email
-    const role = await user.getRoles() // return the user's role
-    return { token, role }
+    // const role = await user.getRoles() // return the user's role
+    return {token, user}
   }
 }
 

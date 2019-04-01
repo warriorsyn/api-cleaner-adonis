@@ -26,6 +26,10 @@ class User extends Model {
     return this.belongsToMany('Adonis/Acl/Role')
   }
 
+  time() {
+    return this.hasMany('App/Models/TimeWorked')
+  }
+
   permission () {
     return this.belongsToMany('Adonis/Acl/Permission')
   }
