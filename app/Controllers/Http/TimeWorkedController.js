@@ -39,6 +39,14 @@ class TimeWorkedController {
     return reported
   }
 
+  async clientReport ({ request, params }) {
+    const data = request.only(['first_date', 'second_date'])
+
+    const reported = await Database.raw(`SELECT * FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE client_id = ${params.id} AND finished_job BETWEEN '${data.first_date}' AND '${data.second_date}'`)
+
+    return reported
+  }
+
   async update ({ params, request, response }) {
   }
 
