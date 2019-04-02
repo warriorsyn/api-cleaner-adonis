@@ -36,7 +36,7 @@ Route.group(() => {
   Route.get('/timeworked', 'TimeWorkedController.index')
   Route.get('/timeworked/:id', 'TimeWorkedController.show')
   Route.post('/timeworked/schedule/:id', 'TimeWorkedController.store').middleware(['is:worker'])
-  
+  Route.post('/timeworkedreport/:id', 'TimeWorkedController.report').middleware(['is:administrator'])
   /**
    * End TimeWorked
    */

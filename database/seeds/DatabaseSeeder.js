@@ -70,6 +70,7 @@ class DatabaseSeeder {
     await TimeWorked.create({
       schedule_id: schedule.id,
       user_id: colaborador.id,
+      client_id: cliente.id,
       time_worked: "4:00"
     })
   }

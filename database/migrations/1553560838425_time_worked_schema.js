@@ -23,7 +23,16 @@ class TimeWorkedSchema extends Schema {
       .inTable('users')
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
+      table
+      .integer('client_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('users')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE')
       table.time('time_worked')
+      table.date('finished_job')
       table.timestamps()
     })
   }
