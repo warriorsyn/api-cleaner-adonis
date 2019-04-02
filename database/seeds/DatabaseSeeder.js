@@ -71,7 +71,7 @@ class DatabaseSeeder {
       schedule_id: schedule.id,
       user_id: colaborador.id,
       client_id: cliente.id,
-      finish_job: '2019-04-02',
+      finished_job: '2019-04-02',
       time_worked: "4:00"
     })
   }
