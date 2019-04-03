@@ -37,18 +37,16 @@ class DatabaseSeeder {
       name: 'Administrator'
     })
 
-    const worker = await Role.create({
+    await Role.create({
       slug: 'worker',
       name: 'Worker'
     })
 
-    const client = await Role.create({
+    await Role.create({
       slug: 'client',
       name: 'Client'
     })
 
-    await colaborador.roles().attach([worker.id])
-    await cliente.roles().attach([client.id])
     await user.roles().attach([admin.id])
 
     // const schedule = await user.schedule().create({
