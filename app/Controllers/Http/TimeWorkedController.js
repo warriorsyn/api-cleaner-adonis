@@ -34,7 +34,7 @@ class TimeWorkedController {
     
     const data = request.only(['first_date', 'second_date'])
 
-    const reported = await Database.raw(`SELECT * FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE user_id = ${params.id} AND finished_job BETWEEN '${data.first_date}' AND '${data.second_date}'`)
+    const reported = await Database.raw(`SELECT * FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE time_workeds.user_id = ${params.id} AND time_workeds.finished_job BETWEEN '${data.first_date}' AND '${data.second_date}'`)
 
     return reported
   }
