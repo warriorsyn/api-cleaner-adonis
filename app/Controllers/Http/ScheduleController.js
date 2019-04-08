@@ -19,7 +19,8 @@ class ScheduleController {
       'observe',
       'date_time',
       'client_id',
-      'worker_id'
+      'worker_id',
+      'address'
     ])
     const schedule = await auth.user.schedule().create({
       // Create an Schedule with relationshib between User an Schedule
