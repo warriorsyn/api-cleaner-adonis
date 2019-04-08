@@ -12,12 +12,12 @@ class TimeWorkedController {
   }
 
   async store ({ request, auth, params }) {
-    const data = request.only(['time_worked'])
+    const data = request.only(['time_worked', 'client_id'])
 
     const timeSchedule = await TimeWorked.create({
       ...data,
       schedule_id: params.id,
-      user_id: auth.user.id
+      user_id: auth.user.id,
     })
 
     return timeSchedule
