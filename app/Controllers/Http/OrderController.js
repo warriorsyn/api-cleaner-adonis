@@ -40,7 +40,7 @@ class OrderController {
 
   async getByWorkerId ({ auth }) {
     const data = await Database.raw(
-      `SELECT orders.*, products.*, schedules.* FROM orders JOIN schedules ON orders.schedule_id = schedules.id JOIN products ON orders.product_id = products.id WHERE schedules.worker_id = ${
+      `SELECT orders.*, products.name, schedules.worker_id FROM orders JOIN schedules ON orders.schedule_id = schedules.id JOIN products ON orders.product_id = products.id WHERE schedules.worker_id = ${
         auth.user.id
       }`
     )
