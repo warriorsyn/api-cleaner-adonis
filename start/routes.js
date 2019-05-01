@@ -72,4 +72,7 @@ Route.group(() => {
   Route.resource('order', 'OrderController')
     .apiOnly()
     .middleware(new Map([[['order.update'], ['is:administrator']]]))
+  Route.get('/ordermine', 'OrderController.getByWorkerId').middleware([
+    'is:worker'
+  ])
 }).middleware(['auth']) // Authenticate midleware

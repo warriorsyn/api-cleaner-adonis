@@ -2,6 +2,7 @@
 
 const Schedule = use('App/Models/Schedule')
 const Order = use('App/Models/Order')
+const Database = use('Database')
 
 class OrderController {
   async index () {
@@ -35,6 +36,16 @@ class OrderController {
     await order.loadMany(['product', 'schedule'])
 
     return order
+  }
+
+  async getByWorkerId ({ auth }) {
+    const data = await Database.raw(
+      `SELECT orders.*, products.*, schedules.* FROM orders JOIN schedules ON orders.schedule_id = schedules.id JOIN products ON orders.product_id = products.id WHERE schedules.worker_id = ${
+        auth.user.id
+      }`
+    )
+
+    return data
   }
 
   async update ({ params, request }) {
