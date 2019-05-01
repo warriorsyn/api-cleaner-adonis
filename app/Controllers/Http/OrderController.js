@@ -2,6 +2,7 @@
 
 const Schedule = use('App/Models/Schedule')
 const Order = use('App/Models/Order')
+
 class OrderController {
   async index () {
     const order = await Order.query()
@@ -19,6 +20,7 @@ class OrderController {
       .where('worker_id', auth.user.id)
       .orderBy('created_at', 'desc')
       .first()
+
     const order = await Order.create({
       ...data,
       schedule_id: scheduleId.id
@@ -35,7 +37,17 @@ class OrderController {
     return order
   }
 
-  async update ({ params, request, response }) {}
+  async update ({ params, request }) {
+    const data = request.all()
+
+    const order = await Order.findOrFail(params.id)
+
+    order.merge(data)
+
+    order.save()
+
+    return order
+  }
 
   async destroy ({ params, request, response }) {}
 }

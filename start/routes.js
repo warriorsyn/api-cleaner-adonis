@@ -4,18 +4,24 @@ const Route = use('Route')
 
 Route.post('/login', 'SessionController.store').validator('Session') // Login Route
 Route.get('/', () => {
-  return "true"
+  return 'true'
 })
 
 Route.get('/teste', () => {
-  return "function"
+  return 'function'
 })
 
 Route.group(() => {
-  Route.get('/clients', 'UserController.getClient').middleware(['is:administrator'])
-  Route.get('/workers', 'UserController.getWorkers').middleware(['is:administrator'])
+  Route.get('/clients', 'UserController.getClient').middleware([
+    'is:administrator'
+  ])
+  Route.get('/workers', 'UserController.getWorkers').middleware([
+    'is:administrator'
+  ])
   // Group of routes ['is:administrator']
-  Route.post('/register', 'UserController.store').validator('User').middleware(['is:administrator']) // Register an user ['is:administrator']
+  Route.post('/register', 'UserController.store')
+    .validator('User')
+    .middleware(['is:administrator']) // Register an user ['is:administrator']
   Route.get('/userschedule', 'ScheduleController.getByAuth')
   Route.resource('schedule', 'ScheduleController') // Crud schedule routes [['store', 'delete', 'update'], ['is:administrat or']]
     .apiOnly()
@@ -29,15 +35,25 @@ Route.group(() => {
       ])
     ) // Access midleware ['Administrator']
 
-  Route.put('/finish/:id', 'FinishWorkController.update').middleware(['is:worker']) // Change schedule status to done(1)
+  Route.put('/finish/:id', 'FinishWorkController.update').middleware([
+    'is:worker'
+  ]) // Change schedule status to done(1)
   /**
    * Time Worked
    */
   Route.get('/timeworked', 'TimeWorkedController.index')
   Route.get('/timeworked/:id', 'TimeWorkedController.show')
-  Route.post('/timeworked/schedule/:id', 'TimeWorkedController.store').middleware(['is:worker'])
-  Route.post('/timeworkedreport/:id', 'TimeWorkedController.report').middleware(['is:administrator'])
-  Route.post('/timeworkedclientreport/:id', 'TimeWorkedController.clientReport').middleware(['is:administrator'])
+  Route.post(
+    '/timeworked/schedule/:id',
+    'TimeWorkedController.store'
+  ).middleware(['is:worker'])
+  Route.post('/timeworkedreport/:id', 'TimeWorkedController.report').middleware(
+    ['is:administrator']
+  )
+  Route.post(
+    '/timeworkedclientreport/:id',
+    'TimeWorkedController.clientReport'
+  ).middleware(['is:administrator'])
   /**
    * End TimeWorked clientReport
    */
@@ -53,5 +69,7 @@ Route.group(() => {
       ])
     )
 
-  Route.resource('order', 'OrderController').apiOnly()
+  Route.resource('order', 'OrderController')
+    .apiOnly()
+    .middleware(new Map([[['order.update'], ['is:administrator']]]))
 }).middleware(['auth']) // Authenticate midleware

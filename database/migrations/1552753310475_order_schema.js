@@ -22,6 +22,10 @@ class OrderSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.integer('quantity').notNullable()
+      table
+        .boolean('status')
+        .notNullable()
+        .defaultTo(false)
       table.timestamps()
     })
   }

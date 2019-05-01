@@ -38,18 +38,21 @@ class UserController {
     return user // return the user data
   }
 
-  async getClient() {
-    const user = await User.query().where('role', 'client').fetch()
- 
-    return user    
+  async getClient () {
+    const user = await User.query()
+      .where('role', 'client')
+      .fetch()
+
+    return user
   }
 
-  async getWorkers() {
-    const user = await User.query().where('role', 'worker').fetch()
- 
-    return user 
-  }
+  async getWorkers () {
+    const user = await User.query()
+      .where('role', 'worker')
+      .fetch()
 
+    return user
+  }
 }
 
 module.exports = UserController

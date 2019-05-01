@@ -42,7 +42,10 @@ class ScheduleController {
 
   async show ({ params }) {
     // Get Schedule by id
-    const schedule = await Schedule.query().where('id', params.id).with('checklist').first()// Search schedule by param (ID)
+    const schedule = await Schedule.query()
+      .where('id', params.id)
+      .with('checklist')
+      .first() // Search schedule by param (ID)
 
     return schedule
   }
@@ -73,8 +76,11 @@ class ScheduleController {
     await schedule.delete() // Delete the schedule
   }
 
-  async getByAuth({ auth }) {
-    const schedule = await Schedule.query().where('worker_id', auth.user.id).orderBy('created_at', 'desc').fetch()
+  async getByAuth ({ auth }) {
+    const schedule = await Schedule.query()
+      .where('worker_id', auth.user.id)
+      .orderBy('created_at', 'desc')
+      .fetch()
 
     return schedule
   }
