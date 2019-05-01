@@ -6,7 +6,9 @@ class ScheduleController {
   // Responsible for Schedule CRUD
   async index () {
     // Return all schedules
-    const schedules = await Schedule.all()
+    const schedules = await Schedule.query()
+      .orderBy('created_at', 'desc')
+      .fetch()
 
     return schedules
   }
