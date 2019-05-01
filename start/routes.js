@@ -58,6 +58,10 @@ Route.group(() => {
    * End TimeWorked clientReport
    */
 
+  Route.post('/productreport/:id', 'ProductController.getReport').middleware([
+    'is:administrator'
+  ])
+
   Route.resource('product', 'ProductController')
     .apiOnly()
     .middleware(
