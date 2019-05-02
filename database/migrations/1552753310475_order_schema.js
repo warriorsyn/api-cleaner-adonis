@@ -26,6 +26,7 @@ class OrderSchema extends Schema {
         .boolean('status')
         .notNullable()
         .defaultTo(false)
+      table.date('finished_order')
       table.timestamps()
     })
   }
