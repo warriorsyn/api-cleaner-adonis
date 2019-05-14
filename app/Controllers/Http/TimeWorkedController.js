@@ -47,6 +47,20 @@ class TimeWorkedController {
     return reported
   }
 
+  async sumReport ({ request, params }) {
+    const data = request.only(['first_date', 'second_date'])
+
+    const sum = await Database.raw(
+      `SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_workeds.time_worked))) as sum_report FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE time_workeds.user_id = ${
+        params.id
+      } AND time_workeds.finished_job BETWEEN '${data.first_date}' AND '${
+        data.second_date
+      }'`
+    )
+
+    return sum
+  }
+
   async clientReport ({ request, params }) {
     const data = request.only(['first_date', 'second_date'])
 
@@ -57,6 +71,18 @@ class TimeWorkedController {
     )
 
     return reported
+  }
+
+  async sumClientReport ({ request, params }) {
+    const data = request.only(['first_date', 'second_date'])
+
+    const sum = await Database.raw(
+      `SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_workeds.time_worked))) as sum_report FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE client_id = ${
+        params.id
+      } AND finished_job BETWEEN '${data.first_date}' AND '${data.second_date}'`
+    )
+
+    return sum
   }
 
   async update ({ params, request, response }) {}

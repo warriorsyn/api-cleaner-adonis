@@ -16,6 +16,7 @@ class UserSchema extends Schema {
       table.string('telephone')
       table.string('address')
       table.string('role').notNullable()
+      table.string('photo')
       table.timestamps()
     })
   }

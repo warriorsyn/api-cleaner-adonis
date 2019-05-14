@@ -54,6 +54,16 @@ Route.group(() => {
     '/timeworkedclientreport/:id',
     'TimeWorkedController.clientReport'
   ).middleware(['is:administrator'])
+
+  Route.post(
+    '/timeworkedreportsum/:id',
+    'TimeWorkedController.sumReport'
+  ).middleware(['is:administrator'])
+
+  Route.post(
+    '/timeworkedclientreportsum/:id',
+    'TimeWorkedController.sumClientReport'
+  ).middleware(['is:administrator'])
   /**
    * End TimeWorked clientReport
    */
