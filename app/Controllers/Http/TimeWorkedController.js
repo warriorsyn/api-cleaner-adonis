@@ -77,7 +77,7 @@ class TimeWorkedController {
     const data = request.only(['first_date', 'second_date'])
 
     const sum = await Database.raw(
-      `SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_workeds.time_worked))) as sum_report FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE client_id = ${
+      `SELECT SUM(time_workeds.time_worked) as sum_report FROM time_workeds INNER JOIN users ON time_workeds.user_id = users.id WHERE client_id = ${
         params.id
       } AND finished_job BETWEEN '${data.first_date}' AND '${data.second_date}'`
     )
