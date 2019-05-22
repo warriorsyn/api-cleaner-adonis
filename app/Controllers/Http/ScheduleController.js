@@ -63,7 +63,7 @@ class ScheduleController {
 
     schedule.merge(data) // Make a merge
 
-    await schedule.save() // Save the marge ['Update']
+    await schedule.save() // Save the merge ['Update']
 
     return schedule
   }

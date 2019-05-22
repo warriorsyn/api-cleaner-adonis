@@ -11,6 +11,9 @@ Route.group(() => {
   Route.delete('/user/:id', 'UserController.destroy').middleware([
     'is:administrator'
   ])
+  Route.put('/user/:id', 'UserController.update').middleware([
+    'is:administrator'
+  ])
   Route.get('/clients', 'UserController.getClient').middleware([
     'is:administrator'
   ])

@@ -38,6 +38,25 @@ class UserController {
     return user // return the user data
   }
 
+  async update ({ request, params }) {
+    const data = request.only([
+      // Get the data sended
+      'name',
+      'email',
+      'password',
+      'telephone',
+      'address'
+    ])
+
+    const user = await User.findOrFail(params.id)
+
+    user.merge(data)
+
+    await user.save()
+
+    return user
+  }
+
   async getClient () {
     const user = await User.query()
       .where('role', 'client')
