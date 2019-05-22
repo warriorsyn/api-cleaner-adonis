@@ -53,6 +53,12 @@ class UserController {
 
     return user
   }
+
+  async destroy ({ params }) {
+    const user = await User.findOrFail(params.id)
+
+    user.delete()
+  }
 }
 
 module.exports = UserController

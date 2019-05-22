@@ -7,11 +7,10 @@ Route.get('/', () => {
   return 'true'
 })
 
-Route.get('/teste', () => {
-  return 'function'
-})
-
 Route.group(() => {
+  Route.delete('/user/:id', 'UserController.destroy').middleware([
+    'is:administrator'
+  ])
   Route.get('/clients', 'UserController.getClient').middleware([
     'is:administrator'
   ])
@@ -22,6 +21,7 @@ Route.group(() => {
   Route.post('/register', 'UserController.store')
     .validator('User')
     .middleware(['is:administrator']) // Register an user ['is:administrator']
+
   Route.get('/userschedule', 'ScheduleController.getByAuth')
   Route.resource('schedule', 'ScheduleController') // Crud schedule routes [['store', 'delete', 'update'], ['is:administrat or']]
     .apiOnly()
